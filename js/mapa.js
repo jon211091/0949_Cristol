@@ -660,3 +660,52 @@ function mostrarResumen() {
         .setContent(contenido)
         .openOn(mapa);
 }
+
+// INICIALIZAR TODAS LAS FUNCIONALIDADES AVANZADAS
+function inicializarFuncionalidadesAvanzadas() {
+    // Cargar librerías adicionales
+    cargarLibreriasAvanzadas();
+    
+    // Inicializar módulos
+    setTimeout(() => {
+        if (window.inicializarGeocodificacion) inicializarGeocodificacion();
+        if (window.inicializarFiltrosAvanzados) inicializarFiltrosAvanzados();
+        if (window.inicializarModoMovil) inicializarModoMovil();
+        if (window.crearGraficasAvanzadas) crearGraficasAvanzadas();
+        
+        console.log('🚀 Todas las funcionalidades avanzadas inicializadas');
+    }, 2000);
+}
+
+function cargarLibreriasAvanzadas() {
+    // SheetJS para Excel
+    var scriptXLSX = document.createElement('script');
+    scriptXLSX.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+    document.head.appendChild(scriptXLSX);
+    
+    // html2pdf para PDF
+    var scriptPDF = document.createElement('script');
+    scriptPDF.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    document.head.appendChild(scriptPDF);
+    
+    // Cargar módulos avanzados
+    cargarScript('js/geocodificacion.js');
+    cargarScript('js/filtros-avanzados.js');
+    cargarScript('js/modo-movil.js');
+    cargarScript('js/graficas-mejoradas.js');
+    cargarScript('js/exportacion.js');
+}
+
+function cargarScript(src) {
+    var script = document.createElement('script');
+    script.src = src;
+    document.head.appendChild(script);
+}
+
+// Llamar después de que el mapa esté completamente cargado
+function finalizarCarga() {
+    // ... código existente ...
+    
+    // Inicializar funcionalidades avanzadas
+    inicializarFuncionalidadesAvanzadas();
+}
