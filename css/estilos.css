@@ -81,3 +81,55 @@
     align-items: center;
     justify-content: center;
 }
+
+/* ESTILOS ESPECÍFICOS PARA APPS NATIVAS */
+@media (max-width: 768px) {
+    .boton-flotante-movil {
+        /* Ya definido en el JS */
+    }
+    
+    .geolocation-control-movil {
+        position: fixed !important;
+        bottom: 90px;
+        right: 20px;
+        z-index: 1000;
+    }
+    
+    /* Mejorar legibilidad en móviles */
+    .popup-contenido {
+        font-size: 14px;
+        max-width: 280px;
+    }
+    
+    .popup-tabla {
+        font-size: 12px;
+    }
+    
+    /* Optimizar controles táctiles */
+    .btn-herramienta, .item-capa {
+        min-height: 44px;
+        padding: 12px 8px;
+    }
+    
+    /* Scroll suave para iOS */
+    .panel-lateral {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Prevenir selección de texto */
+    .panel-lateral, .leyenda-flotante {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Estilos para el marcador de ubicación personalizado */
+.mi-ubicacion-marker {
+    background: transparent !important;
+    border: none !important;
+    text-align: center;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}

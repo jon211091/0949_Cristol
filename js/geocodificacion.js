@@ -118,6 +118,7 @@ function seleccionarResultadoGeocodificacion(index) {
         });
 }
 
+// REEMPLAZA la función analizarUbicacion al principio del archivo:
 function analizarUbicacion(lat, lng) {
     var punto = L.latLng(lat, lng);
     
@@ -125,31 +126,39 @@ function analizarUbicacion(lat, lng) {
     var manzanasCercanas = [];
     var escuelasCercanas = [];
     
-    if (capas.manzanas) {
+    if (window.capas && capas.manzanas) {
         capas.manzanas.eachLayer(function(layer) {
-            var centro = layer.getBounds().getCenter();
-            var distancia = punto.distanceTo(centro);
-            
-            if (distancia < 1000) { // 1km radio
-                manzanasCercanas.push({
-                    layer: layer,
-                    distancia: distancia,
-                    propiedades: layer.feature.properties
-                });
+            try {
+                var centro = layer.getBounds ? layer.getBounds().getCenter() : layer.getLatLng();
+                var distancia = punto.distanceTo(centro);
+                
+                if (distancia < 1000) { // 1km radio
+                    manzanasCercanas.push({
+                        layer: layer,
+                        distancia: distancia,
+                        propiedades: layer.feature.properties
+                    });
+                }
+            } catch (e) {
+                console.log('Error analizando manzana:', e);
             }
         });
     }
     
-    if (capas.escuelas) {
+    if (window.capas && capas.escuelas) {
         capas.escuelas.eachLayer(function(layer) {
-            var distancia = punto.distanceTo(layer.getLatLng());
-            
-            if (distancia < 1000) { // 1km radio
-                escuelasCercanas.push({
-                    layer: layer,
-                    distancia: distancia,
-                    propiedades: layer.feature.properties
-                });
+            try {
+                var distancia = punto.distanceTo(layer.getLatLng());
+                
+                if (distancia < 1000) {
+                    escuelasCercanas.push({
+                        layer: layer,
+                        distancia: distancia,
+                        propiedades: layer.feature.properties
+                    });
+                }
+            } catch (e) {
+                console.log('Error analizando escuela:', e);
             }
         });
     }
