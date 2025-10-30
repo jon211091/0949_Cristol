@@ -465,16 +465,33 @@ function finalizarCarga() {
     actualizarListaCapas();
     actualizarLeyenda();
 
-    // Inicializar gráficas SI existen los elementos
+    // Inicializar gráficas AVANZADAS
     setTimeout(() => {
+        // Primero gráficas básicas
         if (window.crearGraficas && document.getElementById('grafica-educacion')) {
             crearGraficas();
+        }
+        
+        // Luego gráficas avanzadas
+        if (window.crearGraficasAvanzadas) {
+            crearGraficasAvanzadas();
         }
         
         // Inicializar funcionalidades móviles
         if (window.inicializarModoMovil) {
             inicializarModoMovil();
         }
+
+        // Inicializar filtros
+        if (window.inicializarFiltrosAvanzados) {
+            inicializarFiltrosAvanzados();
+        }
+
+        // Inicializar geocodificación
+        if (window.inicializarGeocodificacion) {
+            inicializarGeocodificacion();
+        }
+
     }, 1000);
     
     // Ajustar vista del mapa

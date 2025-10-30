@@ -12,7 +12,7 @@ function crearGraficasAvanzadas() {
 }
 
 function crearSelectorTipoGrafica() {
-    var container = document.getElementById('grafica-nse');
+    var container = document.getElementById('grafica-nse-avanzada');
     if (!container) return;
     
     // Añadir selector de tipo de gráfica
