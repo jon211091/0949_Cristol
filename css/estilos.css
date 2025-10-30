@@ -1,4 +1,4 @@
-/* ESTILOS PARA MÓVIL */
+/* ESTILOS MEJORADOS PARA MÓVIL */
 @media (max-width: 768px) {
     .contenedor-principal {
         flex-direction: column;
@@ -6,29 +6,33 @@
     }
     
     .panel-lateral {
-        width: 100%;
-        height: 60%;
-        position: fixed;
-        bottom: 0;
-        left: 0;
+        width: 85% !important;
+        max-width: 400px !important;
+        height: 70% !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: translateX(-100%) !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         z-index: 1000;
-        transform: translateY(100%);
-        transition: transform 0.3s ease;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
-    .panel-lateral.abierto {
-        transform: translateY(0);
+    .panel-lateral.movil-abierto {
+        transform: translateX(0) !important;
     }
     
     .area-mapa {
         height: 100%;
+        width: 100%;
     }
     
     .boton-flotante-movil {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background: #3498db;
+        background: linear-gradient(135deg, #3498db, #2980b9);
         color: white;
         width: 60px;
         height: 60px;
@@ -38,30 +42,60 @@
         justify-content: center;
         font-size: 24px;
         z-index: 1001;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         cursor: pointer;
+        border: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
     
     .leyenda-flotante {
-        bottom: 70px;
-        right: 10px;
-        max-width: 200px;
+        bottom: 80px !important;
+        right: 10px !important;
+        max-width: 200px !important;
         font-size: 12px;
+        max-height: 50vh;
     }
     
     .geocoder-control {
         position: fixed;
-        top: 10px;
+        top: 80px;
         left: 10px;
         right: 10px;
         z-index: 1000;
     }
     
-    .geolocation-control {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        z-index: 1000;
+    .geocoder-control .input-group {
+        width: 100%;
+    }
+    
+    /* Mejorar legibilidad en móviles */
+    .popup-contenido {
+        font-size: 14px;
+        max-width: 280px;
+    }
+    
+    .popup-tabla {
+        font-size: 12px;
+    }
+    
+    /* Optimizar controles táctiles */
+    .btn-herramienta, .item-capa {
+        min-height: 44px;
+        padding: 12px 8px;
+    }
+    
+    /* Gráficas en móvil */
+    .canvas-grafica {
+        height: 180px !important;
+    }
+    
+    /* Prevenir selección de texto */
+    .panel-lateral, .leyenda-flotante {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 }
 
@@ -82,49 +116,6 @@
     justify-content: center;
 }
 
-/* ESTILOS ESPECÍFICOS PARA APPS NATIVAS */
-@media (max-width: 768px) {
-    .boton-flotante-movil {
-        /* Ya definido en el JS */
-    }
-    
-    .geolocation-control-movil {
-        position: fixed !important;
-        bottom: 90px;
-        right: 20px;
-        z-index: 1000;
-    }
-    
-    /* Mejorar legibilidad en móviles */
-    .popup-contenido {
-        font-size: 14px;
-        max-width: 280px;
-    }
-    
-    .popup-tabla {
-        font-size: 12px;
-    }
-    
-    /* Optimizar controles táctiles */
-    .btn-herramienta, .item-capa {
-        min-height: 44px;
-        padding: 12px 8px;
-    }
-    
-    /* Scroll suave para iOS */
-    .panel-lateral {
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    /* Prevenir selección de texto */
-    .panel-lateral, .leyenda-flotante {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-}
-
 /* Estilos para el marcador de ubicación personalizado */
 .mi-ubicacion-marker {
     background: transparent !important;
@@ -132,4 +123,19 @@
     text-align: center;
     font-size: 24px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Mejoras para gráficas avanzadas */
+.selector-grafica {
+    margin-bottom: 10px;
+}
+
+.selector-grafica select {
+    font-size: 12px;
+    padding: 6px 8px;
+}
+
+/* Contenedor de gráficas avanzadas */
+#grafica-nse-avanzada {
+    min-height: 250px;
 }

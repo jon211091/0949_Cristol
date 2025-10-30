@@ -14,7 +14,11 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Nuestros estilos -->
+    <link rel="stylesheet" href="estilos.css">
+    
     <style>
+        /* Tus estilos actuales aquí (los que ya tienes) */
         body {
             margin: 0;
             padding: 0;
@@ -194,6 +198,42 @@
             color: #2c3e50;
             width: 40%;
         }
+
+        /* Estilos para móvil */
+        @media (max-width: 768px) {
+            .contenedor-principal {
+                flex-direction: column;
+                height: 100vh;
+            }
+            
+            .panel-lateral {
+                width: 100%;
+                height: 70%;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                z-index: 1000;
+                transform: translateY(100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+            }
+            
+            .panel-lateral.abierto {
+                transform: translateY(0);
+            }
+            
+            .area-mapa {
+                height: 100%;
+            }
+            
+            .leyenda-flotante {
+                bottom: 80px;
+                right: 10px;
+                max-width: 200px;
+                font-size: 12px;
+                max-height: 50vh;
+            }
+        }
     </style>
 </head>
 <body>
@@ -249,11 +289,11 @@
                     <canvas id="grafica-educacion" class="canvas-grafica"></canvas>
                 </div>
                 
-                <!-- Gráfica Sociodemográfica -->
+                <!-- Gráfica Sociodemográfica AVANZADA -->
                 <div>
                     <p class="small fw-bold">Datos Sociodemográficos por NSE</p>
-                    <div id="grafica-nse">
-                        <div class="estado-carga">Cargando gráficas...</div>
+                    <div id="grafica-nse-avanzada">
+                        <div class="estado-carga">Cargando gráficas avanzadas...</div>
                     </div>
                 </div>
             </div>
@@ -263,7 +303,7 @@
                 <label>🛠️ Herramientas</label>
                 <button onclick="exportarDatos()" class="btn-herramienta">💾 Exportar Datos</button>
                 <button onclick="mostrarResumen()" class="btn-herramienta">📈 Resumen Estadístico</button>
-                <button onclick="alternarPanel()" class="btn-herramienta">📱 Ocultar Panel</button>
+                <button onclick="alternarPanel()" class="btn-herramienta">📱 Alternar Panel</button>
             </div>
         </div>
 
@@ -285,9 +325,35 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Nuestros scripts -->
+    <!-- SheetJS para Excel -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    
+    <!-- html2pdf para PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- Nuestros scripts EN ORDEN CORRECTO -->
     <script src="js/config.js"></script>
-    <script src="js/graficas.js"></script>
     <script src="js/mapa.js"></script>
+    <script src="js/graficas.js"></script>
+    <script src="js/graficas-mejoradas.js"></script>
+    <script src="js/geocodificacion.js"></script>
+    <script src="js/filtros-avanzados.js"></script>
+    <script src="js/exportacion.js"></script>
+    <script src="js/modo-movil.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        // Inicialización mejorada
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Iniciando aplicación completa...');
+            
+            // Inicializar funcionalidades avanzadas después de que todo cargue
+            setTimeout(function() {
+                if (typeof inicializarFuncionalidadesAvanzadas === 'function') {
+                    inicializarFuncionalidadesAvanzadas();
+                }
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
